@@ -1,7 +1,17 @@
 #!/usr/bin/python3
 
-def print_last_digit(i):
+def max_integer(my_list=[]):
 
-    print(abs(i) % 10, end="")
+    if not my_list:
 
-    return (abs(i) % 10)
+        return None
+
+    biggest = 0
+
+    for index in my_list:
+
+        if index > biggest:
+
+            biggest = index
+
+    return biggest
