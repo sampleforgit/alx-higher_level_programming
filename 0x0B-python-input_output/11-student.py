@@ -1,26 +1,28 @@
 #!/usr/bin/python3
-"""Module 100-append_after.
-Inserts a line of text to a file,
-after each line containing a specific string.
-"""
+""" Student to JSON """
 
 
-def append_after(filename="", search_string="", new_string=""):
-    """Appends the new_string after
-    the search_string in filename.
-    Args:
-        - filename: name of the file
-        - search_string: string to append after
-        - new_string: new_string to append
-    """
+class Student:
+    """ New class student """
 
-    with open(filename, "r") as f:
-        text = f.readlines()
+    def __init__(self, first_name, last_name, age):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
 
-    with open(filename, "w") as fo:
-        s = ""
-        for line in text:
-            s += line
-            if search_string in line:
-                s += new_string
-        fo.write(s)
+    def to_json(self, attrs=None):
+        """ Retrieves a dictionary representation of a Student instance """
+        if attrs is None:
+            return (self.__dict__)
+        else:
+            dic = {}
+            for nm in attrs:
+                if hasattr(self, nm):
+                    dic[nm] = getattr(self, nm)
+            return (dic)
+
+    def reload_from_json(self, json):
+        """ Replaces all attributes of the Student instance"""
+        save = vars(self)
+        for key, value in json.items():
+            save[key] = value
