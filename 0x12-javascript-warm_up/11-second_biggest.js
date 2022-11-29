@@ -1,14 +1,9 @@
 #!/usr/bin/node
-// searches for the second biggest integer in the list of arguments
-const list = process.argv;
-list.splice(0, 2);
-const length = list.length;
-let nextLargest = 0;
+// searches the second biggest integer in the list of arguments.
 
-if (length === 0 || length === 1) {
-  console.log('0');
+if (process.argv.length <= 3) {
+  console.log(0);
 } else {
-  list.sort();
-  nextLargest = list[length - 2];
-  console.log(nextLargest);
+  const list = process.argv.sort();
+  console.log(list.reverse()[1]);
 }
